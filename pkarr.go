@@ -74,9 +74,8 @@ func FromPayload(pub ed25519.PublicKey, payload []byte) (Record, error) {
 	offset := ed25519.SignatureSize
 	sig := payload[:offset]
 
-	var millis int64
-	_, _ = binary.Decode(payload[offset:], binary.BigEndian, &millis)
-	t := time.UnixMilli(millis)
+	millis := binary.BigEndian.Uint64(payload[offset:])
+	t := time.UnixMilli(int64(millis))
 
 	p := payload[offset+8:]
 	var m dnsmessage.Message
