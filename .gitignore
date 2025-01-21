@@ -17,5 +17,7 @@
 !README.md
 !LICENSE
 
+!/.github/workflows/*.yml
+
 # ...even if they are in subdirectories
 !*/
